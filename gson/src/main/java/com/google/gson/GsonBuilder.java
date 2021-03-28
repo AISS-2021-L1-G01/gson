@@ -584,9 +584,9 @@ public final class GsonBuilder {
    * @return an instance of Gson configured with the options currently set in this builder
    */
   public Gson create() {
-    List<TypeAdapterFactory> factories = new ArrayList<TypeAdapterFactory>(this.factories.size() + this.hierarchyFactories.size() + 3);
-    factories.addAll(this.factories);
-    Collections.reverse(factories);
+    List<TypeAdapterFactory> factories2 = new ArrayList<TypeAdapterFactory>(this.factories.size() + this.hierarchyFactories.size() + 3);
+    factories2.addAll(this.factories);
+    Collections.reverse(factories2);
 
     List<TypeAdapterFactory> hierarchyFactories = new ArrayList<TypeAdapterFactory>(this.hierarchyFactories);
     Collections.reverse(hierarchyFactories);
@@ -599,7 +599,7 @@ public final class GsonBuilder {
         generateNonExecutableJson, escapeHtmlChars, prettyPrinting, lenient,
         serializeSpecialFloatingPointValues, longSerializationPolicy,
         datePattern, dateStyle, timeStyle,
-        this.factories, this.hierarchyFactories, factories);
+        this.factories, this.hierarchyFactories, factories2);
   }
 
   @SuppressWarnings("unchecked")
@@ -620,8 +620,8 @@ public final class GsonBuilder {
       return;
     }
 
-    factories.add(TypeAdapters.newFactory(Date.class, dateTypeAdapter));
-    factories.add(TypeAdapters.newFactory(Timestamp.class, timestampTypeAdapter));
-    factories.add(TypeAdapters.newFactory(java.sql.Date.class, javaSqlDateTypeAdapter));
+    factories2.add(TypeAdapters.newFactory(Date.class, dateTypeAdapter));
+    factories2.add(TypeAdapters.newFactory(Timestamp.class, timestampTypeAdapter));
+    factories2.add(TypeAdapters.newFactory(java.sql.Date.class, javaSqlDateTypeAdapter));
   }
 }
